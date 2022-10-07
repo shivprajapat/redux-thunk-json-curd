@@ -1,0 +1,11 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "shiv",
+      "address": "jaipur",
+      "email": "shiv@gmail.com",
+      "contact": "7878787878"
+    }
+  ]
+}
