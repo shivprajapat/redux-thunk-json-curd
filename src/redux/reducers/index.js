@@ -10,8 +10,13 @@ const userReducers = (state = initialState, action) => {
             return {
                 ...state,
                 users: action.payload,
-                loading:false
+                loading: false
             }
+        case types.DELETE_USER:
+            return {
+                ...state,
+                loading: false,
+                }
         default:
             return state;
     }

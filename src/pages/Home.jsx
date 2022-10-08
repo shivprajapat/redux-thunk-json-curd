@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, {  useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import {
   TableContainer,
@@ -16,7 +16,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import { useDispatch, useSelector } from "react-redux";
-import { loadUsers } from "../redux/actions";
+import { deleteUser, loadUsers } from "../redux/actions";
 import { Box } from "@mui/system";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -47,13 +47,18 @@ const Home = () => {
     dispatch(loadUsers());
     // eslint-disable-next-line
   }, []);
+  const handleDelete = (id) => {
+    dispatch(deleteUser(id));
+  };
+  console.log("users && users.id", users && users.id);
   return (
     <div className="home">
       <Grid container spacing={2}>
         <Grid item xs={10} sx={{ margin: "auto" }}>
           <Box sx={{ textAlign: "right" }} mb={2}>
-           
-              <Button variant="contained" color="secondary">Add User</Button>
+            <Button variant="contained" color="secondary">
+              Add User
+            </Button>
           </Box>
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 600 }} aria-label="customized table">
@@ -70,7 +75,7 @@ const Home = () => {
               <TableBody>
                 {users &&
                   users.map((user, i) => {
-                    const { name, address, email, contact } = user;
+                    const { id, name, address, email, contact } = user;
                     return (
                       <StyledTableRow key={i}>
                         <StyledTableCell component="th" scope="row">
@@ -84,11 +89,16 @@ const Home = () => {
                           <ButtonGroup
                             variant="contained"
                             aria-label="outlined primary button group"
+                            sx={{ boxShadow: "none" }}
                           >
                             <IconButton aria-label="delete" size="small">
                               <EditIcon color="primary" />
                             </IconButton>
-                            <IconButton aria-label="delete" size="small">
+                            <IconButton
+                              aria-label="delete"
+                              size="small"
+                              onClick={() => handleDelete(id)}
+                            >
                               <DeleteIcon color="error" />
                             </IconButton>
                           </ButtonGroup>
