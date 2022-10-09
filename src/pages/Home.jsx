@@ -18,6 +18,7 @@ import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteUser, loadUsers } from "../redux/actions";
 import { Box } from "@mui/system";
+import { useNavigate } from 'react-router-dom';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -41,6 +42,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 const Home = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const users = useSelector((state) => state.users.data);
   console.log("users :>> ", users);
   useEffect(() => {
@@ -56,7 +58,7 @@ const Home = () => {
       <Grid container spacing={2}>
         <Grid item xs={10} sx={{ margin: "auto" }}>
           <Box sx={{ textAlign: "right" }} mb={2}>
-            <Button variant="contained" color="secondary">
+            <Button onClick={()=>navigate('/add-user')} variant="contained" color="secondary">
               Add User
             </Button>
           </Box>
