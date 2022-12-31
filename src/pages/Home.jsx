@@ -19,6 +19,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteUser, loadUsers } from "../redux/actions";
 import { Box } from "@mui/system";
 import { useNavigate } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -50,6 +51,8 @@ const Home = () => {
     // eslint-disable-next-line
   }, []);
   const handleDelete = (id) => {
+    toast.success("User has been Delete Successfully!")
+    
     dispatch(deleteUser(id));
   };
   console.log("users && users.id", users && users.id);
@@ -113,7 +116,11 @@ const Home = () => {
           </TableContainer>
         </Grid>
       </Grid>
-    </div>
+      <Toaster
+        position="top-right"
+        reverseOrder={false}
+      />
+      </div>
   );
 };
 

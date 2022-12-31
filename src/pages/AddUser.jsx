@@ -1,7 +1,10 @@
+import React, { useState } from "react";
+import toast, { Toaster } from 'react-hot-toast';
 import { Grid, Box, TextField, Paper, Button } from "@mui/material";
 import { Stack } from "@mui/system";
-import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { addUser } from "../redux/actions";
 
 const AddUser = () => {
   const [state, setState] = useState({
@@ -12,6 +15,7 @@ const AddUser = () => {
   });
   const { name, email, address, contact } = state;
   const navigate = useNavigate();
+  const dispatch = useDispatch()
   const handleChange = (e) => {
     let { name, value } = e.target;
     setState({ ...state, [name]: value });
@@ -19,6 +23,15 @@ const AddUser = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(state);
+    if (!name || !email || !address || !contact) {
+      toast.error("please enter a valid address")
+    } else {
+      dispatch(addUser(state));
+      toast.success("User Data Successfully Added!")
+      setTimeout(() => {
+        navigate("/");
+      }, 1500);
+    }
   };
   return (
     <div>
@@ -31,8 +44,7 @@ const AddUser = () => {
               sx={{ "& .MuiTextField-root": { mt: 1 } }}
               noValidate
               autoComplete="off"
-              onSubmit={handleSubmit}
-            >
+              onSubmit={handleSubmit}>
               <TextField
                 id="outlined-basic"
                 label="Name"
@@ -103,6 +115,11 @@ const AddUser = () => {
           </Paper>
         </Grid>
       </Grid>
+      <Toaster
+        position="top-right"
+        reverseOrder={false}
+      />
+
     </div>
   );
 };
