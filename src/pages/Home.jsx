@@ -96,7 +96,7 @@ const Home = () => {
                             aria-label="outlined primary button group"
                             sx={{ boxShadow: "none" }}
                           >
-                            <IconButton aria-label="delete" size="small">
+                            <IconButton aria-label="delete" size="small" onClick={()=> navigate(`/edit-user/${id}`)}>
                               <EditIcon color="primary" />
                             </IconButton>
                             <IconButton
