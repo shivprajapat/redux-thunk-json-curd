@@ -13,6 +13,7 @@ import {
   Button,
 } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
+import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import EditIcon from "@mui/icons-material/Edit";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 import { useDispatch, useSelector } from "react-redux";
@@ -105,6 +106,9 @@ const Home = () => {
                               onClick={() => handleDelete(id)}
                             >
                               <DeleteIcon color="error" />
+                            </IconButton>
+                            <IconButton aria-label="delete" size="small" onClick={()=> navigate(`/user-details/${id}`)}>
+                              <RemoveRedEyeIcon color="primary" />
                             </IconButton>
                           </ButtonGroup>
                         </StyledTableCell>

@@ -45,7 +45,7 @@ const EditUser = () => {
       toast.success("User Data Successfully Added!")
       setTimeout(() => {
         navigate("/");
-      }, 1500);
+      }, 1000);
     }
   };
 
